@@ -254,12 +254,13 @@
   <section id="contact" class="section">
     <div class="bio">
       <h2>Contact Me</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required><br>
-        <input type="email" placeholder="Your Email" required><br>
-        <textarea placeholder="Your Message" required></textarea><br>
+     <form id="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required><br>
+        <input type="email" id="email" placeholder="Your Email" required><br>
+        <textarea id="message" placeholder="Your Message" required></textarea><br>
         <button type="submit">Send Message</button>
-      </form>
+     </form>
+
     </div>
     <div class="resume-next-to-contact">
       <a href="cv.pdf" target="_blank" class="resume-button">Download My Resume</a>
@@ -269,5 +270,33 @@
   <footer>
     &copy; 2025 Deepshica. All rights reserved.
   </footer>
+  
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwRfJnikfzWQ390xs00200EB4dG5qbGarmliOlEI0OjVkXuZKXcDAuxy_WhF3E8IGfNSg/exec';
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert("Message sent successfully!");
+      form.reset();
+    })
+    .catch(err => console.error('Error!', err.message));
+  });
+</script>
+
 </body>
 </html>
