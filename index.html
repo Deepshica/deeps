@@ -273,7 +273,7 @@
   </footer>
   
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfyc.../exec'; // Your correct link
+  const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Replace with your real script URL
   const form = document.getElementById('contact-form');
 
   form.addEventListener('submit', e => {
@@ -287,14 +287,13 @@
 
     fetch(scriptURL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+        mode: 'no-cors' // This allows it to bypass CORS block
     })
-    .then(response => {
-      if (!response.ok) throw new Error("Network response was not ok");
-      return response.json();
-    })
-    .then(data => {
+    .then(() => {
       alert("Message sent successfully!");
       form.reset();
     })
@@ -303,5 +302,6 @@
     });
   });
 </script>
+
 </body>
 </html>
