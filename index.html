@@ -271,8 +271,8 @@
     &copy; 2025 Deepshica. All rights reserved.
   </footer>
   
-  <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwRfJnikfzWQ390xs00200EB4dG5qbGarmliOlEI0OjVkXuZKXcDAuxy_WhF3E8IGfNSg/exec';
+ <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfyc.../exec'; // Paste yours fully
   const form = document.getElementById('contact-form');
 
   form.addEventListener('submit', e => {
@@ -287,16 +287,22 @@
     fetch(scriptURL, {
       method: 'POST',
       body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     .then(res => res.json())
     .then(data => {
       alert("Message sent successfully!");
       form.reset();
     })
-    .catch(err => console.error('Error!', err.message));
+    .catch(err => {
+      console.error('Error!', err.message);
+      alert("Something went wrong da!");
+    });
   });
 </script>
+
 
 </body>
 </html>
